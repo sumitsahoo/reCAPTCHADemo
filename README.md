@@ -9,7 +9,7 @@ This App also uses Lottie Animation library (everyone loves animation right ?) w
 More about Lottie for Android : `https://github.com/airbnb/lottie-android`<br />
 The animation files are downloaded from : `https://www.lottiefiles.com`
 
-Screenshots :
+#### Screenshots :
 
 <p align="center">
   <img src="https://github.com/sumitsahoo/reCAPTCHADemo/blob/master/screenshots/device-2017-06-12-200106.png" width="350"/>
