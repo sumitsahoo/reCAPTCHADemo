@@ -16,5 +16,6 @@ The animation files are downloaded from : `https://www.lottiefiles.com`
   <img src="https://github.com/sumitsahoo/reCAPTCHADemo/blob/master/screenshots/device-2017-06-12-200120.png" width="350"/>
   <img src="https://github.com/sumitsahoo/reCAPTCHADemo/blob/master/screenshots/device-2017-06-12-200130.png" width="350"/>
   <img src="https://github.com/sumitsahoo/reCAPTCHADemo/blob/master/screenshots/device-2017-06-12-200153.png" width="350"/>
-</p>
-
+</p><br /><br />
+Happy Coding :) 
+Fork -> Improve -> Share -> Repeat
