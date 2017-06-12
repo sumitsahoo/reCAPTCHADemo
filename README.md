@@ -3,4 +3,4 @@ This project demonstrates the usage of reCAPTCHA Android library and how the cap
 
 Android API Usage : `https://developer.android.com/training/safetynet/recaptcha.html`<br />
 More about reCAPTCHA at Google Developers Blog : `https://android-developers.googleblog.com/2017/06/making-internet-safer-and-faster.html`<br />
-More about Token verification : `https://developers.google.com/recaptcha/docs/verify`<br />
+More about token verification : `https://developers.google.com/recaptcha/docs/verify`<br />
