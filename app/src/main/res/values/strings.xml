@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">reCAPTCHA Demo</string>
+    <string name="action_settings">Settings</string>
+    <string name="home_screen_text">To initiate reCAPTHA tap on the FAB.</string>
+    <string name="success_message">Congrats !! You are a Human. To try again, tap on FAB.</string>
+    <string name="failure_message">Are you sure you are a Human ? We don\'t think so. Tap on FAB to try again.</string>
+    <string name="dismiss">DISMISS</string>
+    <string name="no_network">Device not connected to Internet. Check your network connection and try again.</string>
+    <string name="token_verification_success">reCAPTCHA token verified successfully.</string>
+    <string name="token_verification_failed">reCAPTCHA token verification failed.</string>
+    <string name="action_about">About App</string>
+    <string name="about_app">reCAPTCHA Android Demo v1.0\nDesigned and Developed by Sumit :)</string>
+</resources>
