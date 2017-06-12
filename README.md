@@ -4,3 +4,8 @@ This project demonstrates the usage of reCAPTCHA Android library and how the cap
 Android API Usage : `https://developer.android.com/training/safetynet/recaptcha.html`<br />
 More about reCAPTCHA at Google Developers Blog : `https://android-developers.googleblog.com/2017/06/making-internet-safer-and-faster.html`<br />
 More about token verification : `https://developers.google.com/recaptcha/docs/verify`<br />
+
+This App also uses Lottie Animation library (everyone loves animation right ?) which brings some fancy stuff to App :P<br />
+More about Lottie for Android : `https://github.com/airbnb/lottie-android`<br />
+The animation files are downloaded from : `https://www.lottiefiles.com`
+
