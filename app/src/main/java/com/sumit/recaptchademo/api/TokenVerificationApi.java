@@ -3,6 +3,7 @@ package com.sumit.recaptchademo.api;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
+import com.sumit.recaptchademo.util.Util;
 
 import java.io.IOException;
 
@@ -25,7 +26,7 @@ public class TokenVerificationApi {
     public static boolean verifyReCaptchaUserToken(String tokenToVerify, String deviceIp){
 
         RequestBody formBody = new FormBody.Builder()
-                .add("secret", com.sumit.recaptchademo.util.Util.SECRET_KEY)
+                .add("secret", Util.SECRET_KEY)
                 .add("response", tokenToVerify)
                 .add("remoteip", deviceIp)
                 .build();
