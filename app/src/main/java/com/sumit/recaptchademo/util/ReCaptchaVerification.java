@@ -24,12 +24,12 @@ public class ReCaptchaVerification implements GoogleApiClient.ConnectionCallback
     private Context context;
     private GoogleApiClient mGoogleApiClient;
 
-    public ReCaptchaVerification(Context context){
+    public ReCaptchaVerification(Context context) {
         this.context = context;
         initReCaptcha();
     }
 
-    private void initReCaptcha(){
+    private void initReCaptcha() {
         mGoogleApiClient = new GoogleApiClient.Builder(context)
                 .addApi(SafetyNet.API)
                 .addConnectionCallbacks(this)
@@ -67,7 +67,10 @@ public class ReCaptchaVerification implements GoogleApiClient.ConnectionCallback
         reCaptchaDetails.setValid(false);
         reCaptchaDetails.setFailDetail(status);
 
-        ((MainActivity) context).updateReCaptchaStatus(reCaptchaDetails);
+        // Do not let activity receive the call back if it is not in visible state
+
+        if (context != null && MainActivity.isActivityVisible)
+            ((MainActivity) context).updateReCaptchaStatus(reCaptchaDetails);
 
     }
 
@@ -97,12 +100,12 @@ public class ReCaptchaVerification implements GoogleApiClient.ConnectionCallback
         ((MainActivity) context).updateReCaptchaStatus(reCaptchaDetails);
     }
 
-    public interface ReCaptchaStatus{
-        public void updateReCaptchaStatus(ReCaptchaDetails reCaptchaDetails);
+    public interface ReCaptchaStatus {
+        void updateReCaptchaStatus(ReCaptchaDetails reCaptchaDetails);
     }
 
-    public void stopVerification(){
-        if(mGoogleApiClient != null && mGoogleApiClient.isConnected() || mGoogleApiClient.isConnecting()){
+    public void stopVerification() {
+        if (mGoogleApiClient != null && mGoogleApiClient.isConnected() || mGoogleApiClient.isConnecting()) {
             mGoogleApiClient.disconnect();
         }
     }
