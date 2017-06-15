@@ -30,10 +30,10 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     // For reCAPTCHA
-    compile 'com.google.android.gms:play-services-base:11.0.0'
-    compile 'com.google.android.gms:play-services-basement:11.0.0'
-    compile 'com.google.android.gms:play-services-safetynet:11.0.0'
-    compile 'com.google.android.gms:play-services-tasks:11.0.0'
+    compile 'com.google.android.gms:play-services-base:11.0.1'
+    compile 'com.google.android.gms:play-services-basement:11.0.1'
+    compile 'com.google.android.gms:play-services-safetynet:11.0.1'
+    compile 'com.google.android.gms:play-services-tasks:11.0.1'
 
     // For Network Calls
     compile 'com.squareup.okhttp3:okhttp:3.8.0'
