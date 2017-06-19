@@ -17,7 +17,7 @@ To show any alert or message App uses Alerter which is quite cool, have a look h
   <img src="https://github.com/sumitsahoo/reCAPTCHADemo/blob/master/screenshots/device-2017-06-12-200106.png" width="350"/>
   <img src="https://github.com/sumitsahoo/reCAPTCHADemo/blob/master/screenshots/device-2017-06-12-200120.png" width="350"/>
   <img src="https://github.com/sumitsahoo/reCAPTCHADemo/blob/master/screenshots/device-2017-06-12-200130.png" width="350"/>
-  <img src="https://github.com/sumitsahoo/reCAPTCHADemo/blob/master/screenshots/device-2017-06-12-200153.png" width="350"/>
+  <img src="https://github.com/sumitsahoo/reCAPTCHADemo/blob/master/screenshots/device-2017-06-19-123459.png" width="350"/>
 </p><br /><br />
 Happy Coding :) 
 Fork -> Improve -> Share -> Repeat
