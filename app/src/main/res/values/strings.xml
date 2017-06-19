@@ -9,5 +9,9 @@
     <string name="token_verification_success">reCAPTCHA token verified successfully.</string>
     <string name="token_verification_failed">reCAPTCHA token verification failed.</string>
     <string name="action_about">About App</string>
-    <string name="about_app">reCAPTCHA Android Demo v1.0\nDesigned and Developed by Sumit :)</string>
+    <string name="about_app">reCAPTCHA Android Demo v1.1\nDesigned and Developed by Sumit :)</string>
+    <string name="success">Success</string>
+    <string name="error">Error</string>
+    <string name="about">About App</string>
+    <string name="alert">Alert</string>
 </resources>

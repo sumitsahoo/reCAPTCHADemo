@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -18,6 +17,7 @@ import com.sumit.recaptchademo.api.TokenVerificationApi;
 import com.sumit.recaptchademo.model.ReCaptchaDetails;
 import com.sumit.recaptchademo.util.ReCaptchaVerification;
 import com.sumit.recaptchademo.util.Util;
+import com.tapadoo.alerter.Alerter;
 
 
 /**
@@ -73,8 +73,13 @@ public class MainActivity extends AppCompatActivity implements ReCaptchaVerifica
         if (Util.isNetworkAvailable(context)) {
             reCaptchaVerification = new ReCaptchaVerification(context);
         } else {
-            Snackbar.make(coordinatorLayout, getString(R.string.no_network), Snackbar.LENGTH_LONG)
-                    .setAction(getString(R.string.dismiss), null).show();
+
+            Alerter.create((MainActivity) context)
+                    .setTitle(getString(R.string.alert))
+                    .setIcon(R.drawable.ic_no_internet)
+                    .setBackgroundColor(R.color.colorPrimary)
+                    .setText(getString(R.string.no_network))
+                    .show();
         }
     }
 
@@ -94,8 +99,14 @@ public class MainActivity extends AppCompatActivity implements ReCaptchaVerifica
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_about) {
-            Snackbar.make(coordinatorLayout, getString(R.string.about_app), Snackbar.LENGTH_LONG)
-                    .setAction(getString(R.string.dismiss), null).show();
+
+            Alerter.create((MainActivity) context)
+                    .setTitle(getString(R.string.about))
+                    .setIcon(R.drawable.ic_user_verify)
+                    .setBackgroundColor(R.color.colorPrimary)
+                    .setText(getString(R.string.about_app))
+                    .show();
+
             return true;
         }
 
@@ -169,14 +180,29 @@ public class MainActivity extends AppCompatActivity implements ReCaptchaVerifica
         protected void onPostExecute(Boolean isSuccess) {
             super.onPostExecute(isSuccess);
 
-            if (isSuccess) {
-                Snackbar.make(coordinatorLayout, getString(R.string.token_verification_success), Snackbar.LENGTH_LONG)
-                        .setAction(getString(R.string.dismiss), null).show();
-            } else {
+            String messageToDisplay;
+            int iconToDisplay;
+            int alertBackgroundColor;
 
-                Snackbar.make(coordinatorLayout, getString(R.string.token_verification_failed), Snackbar.LENGTH_LONG)
-                        .setAction(getString(R.string.dismiss), null).show();
+            if (isSuccess) {
+                messageToDisplay = getString(R.string.token_verification_success);
+                iconToDisplay = R.drawable.ic_verification_success;
+                alertBackgroundColor = R.color.green_600;
+            } else {
+                messageToDisplay = getString(R.string.token_verification_failed);
+                iconToDisplay = R.drawable.ic_verification_failed;
+                alertBackgroundColor = R.color.red_600;
             }
+
+            // Show Message
+
+            Alerter.create((MainActivity) context)
+                    .setTitle(isSuccess ? getString(R.string.success) : getString(R.string.error))
+                    .setIcon(iconToDisplay)
+                    .setBackgroundColor(alertBackgroundColor)
+                    .setText(messageToDisplay)
+                    .show();
+
         }
     }
 }
