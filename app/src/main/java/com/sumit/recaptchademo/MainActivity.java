@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements ReCaptchaVerifica
     }
 
     private void playDefaultAnimation() {
+        lottieAnimationView.setDrawingCacheEnabled(true);
+        lottieAnimationView.useExperimentalHardwareAcceleration(false);
         lottieAnimationView.setAnimation("vr_animation.json");
         lottieAnimationView.loop(true);
         lottieAnimationView.playAnimation();
@@ -78,6 +80,9 @@ public class MainActivity extends AppCompatActivity implements ReCaptchaVerifica
         lottieAnimationView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
+
+                if (spring == null)
+                    return false;
 
                 // Set the spring in motion; moving from 0 to 1
 
