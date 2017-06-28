@@ -30,6 +30,7 @@ import com.tapadoo.alerter.Alerter;
 
 public class MainActivity extends AppCompatActivity implements ReCaptchaVerification.ReCaptchaStatus {
 
+
     private CoordinatorLayout coordinatorLayout;
     private Context context;
     private LottieAnimationView lottieAnimationView;
@@ -41,6 +42,10 @@ public class MainActivity extends AppCompatActivity implements ReCaptchaVerifica
 
     public static boolean isActivityVisible = false;
 
+    private static final int LOTTIE_SUCCESS = 1;
+    private static final int LOTTIE_FAIL = 0;
+    private static final int LOTTIE_DEFAULT = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,15 +54,7 @@ public class MainActivity extends AppCompatActivity implements ReCaptchaVerifica
         context = this;
         initViews();
         initSpringAnimation();
-        playDefaultAnimation();
-    }
-
-    private void playDefaultAnimation() {
-        lottieAnimationView.setDrawingCacheEnabled(true);
-        lottieAnimationView.useExperimentalHardwareAcceleration(false);
-        lottieAnimationView.setAnimation("vr_animation.json");
-        lottieAnimationView.loop(true);
-        lottieAnimationView.playAnimation();
+        playLottieAnimation(LOTTIE_DEFAULT);
     }
 
     private void initViews() {
@@ -104,14 +101,17 @@ public class MainActivity extends AppCompatActivity implements ReCaptchaVerifica
         if (Util.isNetworkAvailable(context)) {
             reCaptchaVerification = new ReCaptchaVerification(context);
         } else {
-
-            Alerter.create((MainActivity) context)
-                    .setTitle(getString(R.string.alert))
-                    .setIcon(R.drawable.ic_no_internet)
-                    .setBackgroundColor(R.color.colorPrimary)
-                    .setText(getString(R.string.no_network))
-                    .show();
+            showNetworkErrorMessage();
         }
+    }
+
+    private void showNetworkErrorMessage() {
+        Alerter.create((MainActivity) context)
+                .setTitle(getString(R.string.alert))
+                .setIcon(R.drawable.ic_no_internet)
+                .setBackgroundColor(R.color.colorPrimary)
+                .setText(getString(R.string.no_network))
+                .show();
     }
 
     @Override
@@ -144,11 +144,18 @@ public class MainActivity extends AppCompatActivity implements ReCaptchaVerifica
         return super.onOptionsItemSelected(item);
     }
 
-    private void playLottieAnimation(boolean isSuccess) {
-        if (isSuccess) {
-            lottieAnimationView.setAnimation("star.json");
-        } else {
+    private void playLottieAnimation(int type) {
+
+        if (lottieAnimationView.isAnimating()) {
+            lottieAnimationView.pauseAnimation();
+        }
+
+        if (type == LOTTIE_SUCCESS) {
+            lottieAnimationView.setAnimation("star_02.json");
+        } else if (type == LOTTIE_FAIL) {
             lottieAnimationView.setAnimation("shrug.json");
+        } else if (type == LOTTIE_DEFAULT) {
+            lottieAnimationView.setAnimation("vr_animation.json");
         }
 
         lottieAnimationView.loop(true);
@@ -181,15 +188,20 @@ public class MainActivity extends AppCompatActivity implements ReCaptchaVerifica
     @Override
     public void updateReCaptchaStatus(ReCaptchaDetails reCaptchaDetails) {
         if (reCaptchaDetails.isValid()) {
-            playLottieAnimation(true);
+            playLottieAnimation(LOTTIE_SUCCESS);
             textViewMessage.setText(getString(R.string.success_message));
 
             tokenVerificationTask = new TokenVerificationTask();
             tokenVerificationTask.execute(reCaptchaDetails.getTokenResult());
 
         } else {
-            playLottieAnimation(false);
-            textViewMessage.setText(getString(R.string.failure_message));
+            playLottieAnimation(LOTTIE_FAIL);
+
+            if (reCaptchaDetails.isNetworkError()) {
+                showNetworkErrorMessage();
+            } else {
+                textViewMessage.setText(getString(R.string.failure_message));
+            }
         }
     }
 

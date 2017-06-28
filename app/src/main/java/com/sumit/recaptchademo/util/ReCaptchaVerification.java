@@ -12,6 +12,7 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.safetynet.SafetyNet;
 import com.google.android.gms.safetynet.SafetyNetApi;
 import com.sumit.recaptchademo.MainActivity;
+import com.sumit.recaptchademo.R;
 import com.sumit.recaptchademo.model.ReCaptchaDetails;
 
 
@@ -66,6 +67,10 @@ public class ReCaptchaVerification implements GoogleApiClient.ConnectionCallback
         ReCaptchaDetails reCaptchaDetails = new ReCaptchaDetails();
         reCaptchaDetails.setValid(false);
         reCaptchaDetails.setFailDetail(status);
+
+        if (status.getStatusMessage().contains(context.getString(R.string.status_network_issue))) {
+            reCaptchaDetails.setNetworkError(true);
+        }
 
         // Do not let activity receive the call back if it is not in visible state
 
