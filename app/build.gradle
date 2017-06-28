@@ -35,16 +35,19 @@ dependencies {
     compile 'com.google.android.gms:play-services-safetynet:11.0.1'
     compile 'com.google.android.gms:play-services-tasks:11.0.1'
 
-    // For Network Calls
-    compile 'com.squareup.okhttp3:okhttp:3.8.0'
+    // OkHttp : https://github.com/square/okhttp
+    compile 'com.squareup.okhttp3:okhttp:3.8.1'
 
-    // For Animation
+    // Lottie Animation : https://github.com/airbnb/lottie-android
     compile 'com.airbnb.android:lottie:2.0.0'
 
-    // Gson
+    // Gson : https://github.com/google/gson
     compile 'com.google.code.gson:gson:2.8.1'
 
-    // Alerter
-    compile 'com.tapadoo.android:alerter:1.0.8'
+    // Alerter : https://github.com/Tapadoo/Alerter
+    compile 'com.tapadoo.android:alerter:1.0.9'
+
+    // Rebound by Facebook for Animation : http://facebook.github.io/rebound/
+    compile 'com.facebook.rebound:rebound:0.3.8'
 
 }

@@ -9,10 +9,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.facebook.rebound.SimpleSpringListener;
+import com.facebook.rebound.Spring;
+import com.facebook.rebound.SpringSystem;
 import com.sumit.recaptchademo.api.TokenVerificationApi;
 import com.sumit.recaptchademo.model.ReCaptchaDetails;
 import com.sumit.recaptchademo.util.ReCaptchaVerification;
@@ -33,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements ReCaptchaVerifica
     private ReCaptchaVerification reCaptchaVerification;
     private TokenVerificationTask tokenVerificationTask;
 
+    private Spring spring;
+
     public static boolean isActivityVisible = false;
 
     @Override
@@ -42,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements ReCaptchaVerifica
 
         context = this;
         initViews();
+        initSpringAnimation();
         playDefaultAnimation();
     }
 
@@ -64,6 +71,25 @@ public class MainActivity extends AppCompatActivity implements ReCaptchaVerifica
             @Override
             public void onClick(View view) {
                 initReCaptcha();
+            }
+        });
+
+        // Animate on touch
+        lottieAnimationView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+
+                // Set the spring in motion; moving from 0 to 1
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    // Pressed state
+                    spring.setEndValue(1);
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    // Release state
+                    spring.setEndValue(0);
+                }
+
+                return true;
             }
         });
     }
@@ -122,6 +148,29 @@ public class MainActivity extends AppCompatActivity implements ReCaptchaVerifica
 
         lottieAnimationView.loop(true);
         lottieAnimationView.playAnimation();
+    }
+
+    private void initSpringAnimation() {
+        // Create a system to run the physics loop for a set of springs.
+        SpringSystem springSystem = SpringSystem.create();
+
+        // Add a spring to the system.
+        spring = springSystem.createSpring();
+
+        // Add a listener to observe the motion of the spring.
+        spring.addListener(new SimpleSpringListener() {
+
+            @Override
+            public void onSpringUpdate(Spring spring) {
+                // You can observe the updates in the spring
+                // state by asking its current value in onSpringUpdate.
+                float value = (float) spring.getCurrentValue();
+                float scale = 1f - (value * 0.5f);
+                lottieAnimationView.setScaleX(scale);
+                lottieAnimationView.setScaleY(scale);
+            }
+        });
+
     }
 
     @Override
