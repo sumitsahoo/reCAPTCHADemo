@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements ReCaptchaVerifica
 
         context = this;
         initViews();
-        initSpringAnimation();
         playLottieAnimation(LOTTIE_DEFAULT);
     }
 
@@ -97,6 +96,8 @@ public class MainActivity extends AppCompatActivity implements ReCaptchaVerifica
                 return true;
             }
         });
+
+        initSpringAnimation(lottieAnimationView);
     }
 
     private void initReCaptcha() {
@@ -165,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements ReCaptchaVerifica
         lottieAnimationView.playAnimation();
     }
 
-    private void initSpringAnimation() {
+    private void initSpringAnimation(final View viewToAnimate) {
 
         final int TENSION = 20;
         final int FRICTION = 3;
@@ -189,8 +190,10 @@ public class MainActivity extends AppCompatActivity implements ReCaptchaVerifica
                 // state by asking its current value in onSpringUpdate.
                 float value = (float) spring.getCurrentValue();
                 float scale = 1f - (value * 0.5f);
-                lottieAnimationView.setScaleX(scale);
-                lottieAnimationView.setScaleY(scale);
+
+                // Set scale values
+                viewToAnimate.setScaleX(scale);
+                viewToAnimate.setScaleY(scale);
             }
         });
 
@@ -248,7 +251,7 @@ public class MainActivity extends AppCompatActivity implements ReCaptchaVerifica
 
         @Override
         protected Boolean doInBackground(String... params) {
-            if(Util.isNetworkAvailable(context))
+            if (Util.isNetworkAvailable(context))
                 return TokenVerificationApi.verifyReCaptchaUserToken(params[0], Util.getIPAddress(true));
             else return false;
         }
