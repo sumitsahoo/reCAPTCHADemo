@@ -9,6 +9,8 @@ This App uses Lottie Animation library (everyone loves animation right ?) which 
 More about Lottie for Android : `https://github.com/airbnb/lottie-android`<br />
 The animation files are downloaded from : `https://www.lottiefiles.com`
 
+Lottie view has smooth Spring animation thanks to Rebound library by Facebook. Tap on Lottie view and it will animate on tap and release action (i.e. MotionEvent.ACTION_DOWN and MotionEvent.ACTION_UP event). More about Rebound library : `http://facebook.github.io/rebound/`
+
 To show any alert or message App uses Alerter which is quite cool, have a look here : `https://github.com/Tapadoo/Alerter`
 
 #### Screenshots :
