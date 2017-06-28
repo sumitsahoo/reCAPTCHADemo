@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.facebook.rebound.SimpleSpringListener;
 import com.facebook.rebound.Spring;
+import com.facebook.rebound.SpringConfig;
 import com.facebook.rebound.SpringSystem;
 import com.sumit.recaptchademo.api.TokenVerificationApi;
 import com.sumit.recaptchademo.model.ReCaptchaDetails;
@@ -85,9 +86,11 @@ public class MainActivity extends AppCompatActivity implements ReCaptchaVerifica
 
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     // Pressed state
+                    lottieAnimationView.pauseAnimation();
                     spring.setEndValue(1);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     // Release state
+                    lottieAnimationView.playAnimation();
                     spring.setEndValue(0);
                 }
 
@@ -163,11 +166,19 @@ public class MainActivity extends AppCompatActivity implements ReCaptchaVerifica
     }
 
     private void initSpringAnimation() {
+
+        final int TENSION = 20;
+        final int FRICTION = 3;
+
         // Create a system to run the physics loop for a set of springs.
         SpringSystem springSystem = SpringSystem.create();
 
         // Add a spring to the system.
         spring = springSystem.createSpring();
+
+        // Set spring configuration
+        SpringConfig config = new SpringConfig(TENSION, FRICTION);
+        spring.setSpringConfig(config);
 
         // Add a listener to observe the motion of the spring.
         spring.addListener(new SimpleSpringListener() {
