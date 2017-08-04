@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion "26.0.0"
     defaultConfig {
         applicationId "com.sumit.recaptchademo"
         minSdkVersion 19
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 2
         versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -24,28 +24,27 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support:design:26.+'
     testCompile 'junit:junit:4.12'
 
     // For reCAPTCHA
-    compile 'com.google.android.gms:play-services-base:11.0.1'
-    compile 'com.google.android.gms:play-services-basement:11.0.1'
-    compile 'com.google.android.gms:play-services-safetynet:11.0.1'
-    compile 'com.google.android.gms:play-services-tasks:11.0.1'
+    compile 'com.google.android.gms:play-services-base:11.0.4'
+    compile 'com.google.android.gms:play-services-basement:11.0.4'
+    compile 'com.google.android.gms:play-services-safetynet:11.0.4'
+    compile 'com.google.android.gms:play-services-tasks:11.0.4'
 
     // OkHttp : https://github.com/square/okhttp
     compile 'com.squareup.okhttp3:okhttp:3.8.1'
 
     // Lottie Animation : https://github.com/airbnb/lottie-android
-    compile 'com.airbnb.android:lottie:2.0.0'
+    compile 'com.airbnb.android:lottie:2.1.0'
 
     // Gson : https://github.com/google/gson
     compile 'com.google.code.gson:gson:2.8.1'
 
     // Alerter : https://github.com/Tapadoo/Alerter
-    compile 'com.tapadoo.android:alerter:1.0.9'
+    compile 'com.tapadoo.android:alerter:2.0.0'
 
     // Rebound by Facebook for Animation : http://facebook.github.io/rebound/
     compile 'com.facebook.rebound:rebound:0.3.8'

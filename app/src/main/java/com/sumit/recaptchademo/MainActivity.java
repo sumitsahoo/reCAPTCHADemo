@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements ReCaptchaVerifica
         Alerter.create((MainActivity) context)
                 .setTitle(getString(R.string.alert))
                 .setIcon(R.drawable.ic_no_internet)
-                .setBackgroundColor(R.color.colorPrimary)
+                .setBackgroundColorRes(R.color.colorPrimary)
                 .setText(getString(R.string.no_network))
                 .show();
     }
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements ReCaptchaVerifica
             Alerter.create((MainActivity) context)
                     .setTitle(getString(R.string.about))
                     .setIcon(R.drawable.ic_user_verify)
-                    .setBackgroundColor(R.color.colorPrimary)
+                    .setBackgroundColorRes(R.color.colorPrimary)
                     .setText(getString(R.string.about_app))
                     .show();
 
@@ -279,7 +279,7 @@ public class MainActivity extends AppCompatActivity implements ReCaptchaVerifica
             Alerter.create((MainActivity) context)
                     .setTitle(isSuccess ? getString(R.string.success) : getString(R.string.error))
                     .setIcon(iconToDisplay)
-                    .setBackgroundColor(alertBackgroundColor)
+                    .setBackgroundColorRes(alertBackgroundColor)
                     .setText(messageToDisplay)
                     .show();
 
